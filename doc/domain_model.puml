@@ -1,0 +1,100 @@
+@startuml
+
+hide methods
+
+
+
+object Product {
+    -String code
+    -double price
+    -String stockLocation
+    -String description
+}
+
+object PropertyValue {
+    -String value
+}
+
+object Device {
+    -String serialNum
+    -String entryDate
+    -File image
+}
+
+object State {
+    -String designation
+}
+
+object Condition {
+    -String designation
+}
+
+object Appliance {
+    -String name
+}
+
+object Property {
+    -String name
+}
+
+object Model {
+    -String modelNum
+    -File manual
+}
+
+object Brand {
+    -String designation
+}
+
+object Part {
+     -String name
+     -String partNum
+     -int num
+}
+
+object Repair {
+    -Date date
+    -String observation
+}
+
+object Test {
+    -Date date
+    -boolean ok
+    -String observation
+}
+
+object Diagnosis {
+    -Date date
+    -boolean unrepairable
+}
+
+Product "1" --> "*" Model: represents
+Product "1" --> "*" Part: represents
+
+Device "1" -r-> "1" State: has a
+Device "1" ---> "1" Model: is part of a
+Device "1" --> "1" Condition: has a
+
+Part "*" -r-> "*" Model: belongs to
+Part "1" ---> "*" Property: has
+Part "1" ---> "*" PropertyValue: has
+Part "1" --> "1" Brand: is made by a
+
+Model "1" --> "*" PropertyValue: has
+Model "1" --> "1" Brand: is made by
+Model "1" --> "1" Appliance: is a
+
+Appliance "1" ---> "*" Property: has
+
+PropertyValue "1" --> "1" Property: corresponds to
+
+Repair "1" --> "1" Device
+Repair "1" --> "*" Part
+
+Test "1" --> "1" Device
+
+Diagnosis "1" -r-> "1" Device
+Diagnosis "1" --> "*" Part
+
+
+@enduml
