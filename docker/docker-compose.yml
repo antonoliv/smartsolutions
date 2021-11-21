@@ -1,0 +1,11 @@
+services:
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    container_name: mysql
+    env_file:
+      - mysql_env
+    ports:
+      - 3306:3306

@@ -1,0 +1,4 @@
+MYSQL_ROOT_PASSWORD=dumbsolutions
+MYSQL_USER=smartsolutions
+MYSQL_PASSWORD=dumbsolutions
+MYSQL_DATABASE=smartsolutions
