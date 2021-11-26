@@ -23,8 +23,7 @@ public class HTTPServer extends Thread {
         //System.setProperty("javax.net.ssl.keyStore", CERT);
         //System.setProperty("javax.net.ssl.keyStorePassword", "forgotten");
         ServerSocketFactory sslF = ServerSocketFactory.getDefault();
-        //server = (SSLServerSocket) sslF.createServerSocket(443);
-        server = sslF.createServerSocket();
+        server = sslF.createServerSocket(8080);
         this.parser = parser;
     }
 
@@ -33,7 +32,7 @@ public class HTTPServer extends Thread {
     public void run() {
         while (true) {
             try {
-                Socket client = (Socket) this.server.accept();
+                Socket client = this.server.accept();
                 HTTPRequest request = new HTTPRequest(client, parser);
                 request.start();
             } catch (IOException ex) {

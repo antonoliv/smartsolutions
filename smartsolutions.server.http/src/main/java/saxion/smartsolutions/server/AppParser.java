@@ -1,17 +1,24 @@
-package saxion.smartsolutions.server.http;
+package saxion.smartsolutions.server;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import saxion.smartsolutions.core.PersistenceContext;
+import saxion.smartsolutions.core.model.domain.ModelNumber;
 import saxion.smartsolutions.core.part.application.RegisterPartController;
+import saxion.smartsolutions.core.part.domain.PartNumber;
+import saxion.smartsolutions.core.value.Designation;
+import saxion.smartsolutions.server.http.HTTPMessage;
+import saxion.smartsolutions.server.http.HTTPRequestParser;
 
-import java.io.IOException;
+public class AppParser implements HTTPRequestParser {
 
-public class AppParser implements HTTPRequestParser{
-
-    private RegisterPartController = new RegisterPartController();
+    private RegisterPartController ctrl = new RegisterPartController();
 
     @Override
     public HTTPMessage parse(HTTPMessage request) {
         HTTPMessage response = new HTTPMessage();
-
+        System.out.println(request.getMethod() + " - " + request.getURI());
         switch (request.getMethod()) {
             case "GET":
                 switch (request.getURI()) {
@@ -35,17 +42,22 @@ public class AppParser implements HTTPRequestParser{
                         }
                 }
                 break;
-            case "PUT":
+            case "POST":
                 switch (request.getURI()) {
-                    case "/new_part":
-                        request.getContentInJSON();
+                    case "/parts":
 
+                        System.out.println(request.getString());
+                        JsonObject json = (JsonObject) JsonParser.parseString(request.getString());
+                        PersistenceContext.repositories().modelRepository().findByModelNumber(ModelNumber.valueOf("test"));
+                        ctrl.registerPart(Designation.valueOf(json.get("name").getAsString()), PartNumber.valueOf(json.get("partNumber").getAsString()),
+                                Designation.valueOf(json.get("brand").getAsString()), ModelNumber.valueOf(json.get("modelNumber").getAsString()));
+
+                        response.setResponseStatus("200 OK");
                 }
+
                 break;
             default:
         }
         return response;
     }
-
-
 }

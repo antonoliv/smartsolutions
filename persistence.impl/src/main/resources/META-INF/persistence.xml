@@ -9,7 +9,6 @@
 
     <class>saxion.smartsolutions.core.device.domain.Device</class>
     <class>saxion.smartsolutions.core.brand.domain.Brand</class>
-    <class>saxion.smartsolutions.core.device.domain.Device</class>
     <class>saxion.smartsolutions.core.model.domain.Model</class>
     <class>saxion.smartsolutions.core.part.domain.Part</class>
 
@@ -21,10 +20,11 @@
       <property name="javax.persistence.jdbc.user" value="smartsolutions"/>
       <property name="javax.persistence.jdbc.password" value="dumbsolutions"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       <!-- <property name="eclipselink.logging.level" saxion.smartsolutions.core.value="FINE"/> -->
       <!-- <property name = "hibernate.show_sql" saxion.smartsolutions.core.value = "true" /> -->
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
-            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.hbm2ddl.auto" value="create" />
     </properties>
   </persistence-unit>

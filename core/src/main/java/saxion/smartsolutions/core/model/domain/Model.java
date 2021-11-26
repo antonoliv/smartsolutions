@@ -26,7 +26,7 @@ public class Model implements DomainEntity<ModelNumber> {
     private Designation name;
 
     @Column(nullable = false, unique = true)
-    private ModelNumber model;
+    private ModelNumber modelNumber;
 
     @ManyToOne
     private Device type;
@@ -43,7 +43,7 @@ public class Model implements DomainEntity<ModelNumber> {
         }
         this.name = name;
         this.brand = brand;
-        this.model = model;
+        this.modelNumber = model;
         this.type = type;
         this.manuals = new HashSet<>(manuals);
     }
@@ -54,7 +54,7 @@ public class Model implements DomainEntity<ModelNumber> {
         }
         this.name = name;
         this.brand = brand;
-        this.model = model;
+        this.modelNumber = model;
         this.type = type;
         this.manuals = new HashSet<>();
     }
@@ -67,7 +67,7 @@ public class Model implements DomainEntity<ModelNumber> {
 
     @Override
     public ModelNumber identity() {
-        return model;
+        return modelNumber;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Model implements DomainEntity<ModelNumber> {
             return false;
         }
         Model oth = (Model) other;
-        return model.equals(oth.model);
+        return modelNumber.equals(oth.modelNumber);
     }
 
     public boolean addManual(File manual) {

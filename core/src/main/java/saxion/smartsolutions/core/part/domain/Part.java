@@ -1,6 +1,5 @@
 package saxion.smartsolutions.core.part.domain;
 
-import org.json.JSONObject;
 import saxion.smartsolutions.core.brand.domain.Brand;
 import saxion.smartsolutions.core.concepts.DomainEntity;
 import saxion.smartsolutions.core.model.domain.Model;

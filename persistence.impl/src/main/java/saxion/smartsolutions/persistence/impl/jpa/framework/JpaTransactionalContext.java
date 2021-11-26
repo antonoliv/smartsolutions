@@ -46,7 +46,6 @@ public class JpaTransactionalContext implements TransactionalContext {
 
     protected final synchronized EntityManagerFactory entityManagerFactory() {
         if (singletonEMF == null) {
-            System.out.println(persistenceUnitName);
 
             singletonEMF = Persistence.createEntityManagerFactory(persistenceUnitName, properties);
         }

@@ -2,29 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register New Part</title>
+    <title>Register New Model</title>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
 <header>
-<h1>Register New Part</h1>
+<h1>Register New Model</h1>
 </header>
 <main>
+    <form onsubmit="registerModel()">
         <fieldset>
-        <legend>Add a new Part</legend>
+        <legend>Add a new Model</legend>
         <ul>
             <li><label for="name">Generic Name:</label>
                 <input type="text" name="name" id="name"></li>
-            <li><label for="partNumber">Part Number:</label>
+            <li><label for="partNumber">Model Number:</label>
                 <input type="text" name="partNumber" id="partNumber"></li>
-            <li><label for="modelNumber">Model Number:</label>
-                <input type="text" name="modeNumber" id="modelNumber"></li>
         </ul>
-            <input type="submit" value="Submit" onclick="registerPart()">
-            <div id="result">
-
-            </div>
+            <input type="submit" value="Submit">
         </fieldset>
+    </form>
 </main>
 <nav role="navigation">
     <ul>
@@ -34,6 +31,6 @@
 <footer>
     Smart Solutions Semester
 </footer>
-<script src="new_part.js"></script>
+<script src="new_model.js"></script>
 </body>
 </html>

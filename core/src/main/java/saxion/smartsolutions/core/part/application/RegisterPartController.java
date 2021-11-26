@@ -23,8 +23,19 @@ public class RegisterPartController {
     }
 
     public Part registerPart(Designation name, PartNumber partnum, Designation brand, ModelNumber model) {
-        Brand b = brp.findByName(brand).get();
-        Model m = mrp.findByModelNumber(model).get();
+        Brand b;
+        try {
+            b = brp.findByName(brand).get();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Brand not registered in the system.");
+        }
+        Model m;
+        System.out.println(model.model);
+        try {
+            m = mrp.findByModelNumber(model).get();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Model not registered in the system.");
+        }
         return repo.save(new Part(name, partnum, b, m));
     }
 }

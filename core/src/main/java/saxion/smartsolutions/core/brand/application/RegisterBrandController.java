@@ -15,7 +15,6 @@ public class RegisterBrandController {
     }
 
     public Brand registerBrand(final Designation name) {
-        System.out.println("test");
         return repo.save(new Brand(name));
     }
 }

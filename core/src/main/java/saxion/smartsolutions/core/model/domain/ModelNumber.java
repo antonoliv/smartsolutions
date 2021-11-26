@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ModelNumber implements Comparable<ModelNumber> {
 
-    private final String model;
+    public final String model;
 
     private ModelNumber(String model) {
         if(model == null || model.trim().isEmpty()) {

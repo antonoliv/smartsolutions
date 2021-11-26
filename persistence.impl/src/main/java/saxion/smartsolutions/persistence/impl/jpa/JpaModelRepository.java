@@ -9,7 +9,7 @@ import java.util.Optional;
 public class JpaModelRepository extends JpaRepository<Model, Long, ModelNumber> implements ModelRepository {
 
     public JpaModelRepository() {
-        super("model_number");
+        super("modelNumber");
     }
 
     @Override

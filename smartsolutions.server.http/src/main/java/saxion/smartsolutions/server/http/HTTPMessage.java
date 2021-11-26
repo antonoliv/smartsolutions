@@ -5,7 +5,6 @@
  */
 package saxion.smartsolutions.server.http;
 
-import org.json.JSONObject;
 
 import java.io.*;
 
@@ -40,9 +39,11 @@ public class HTTPMessage implements Serializable {
     private static final String[][] knownFileExt = {
             {".pdf", "application/pdf"},
             {".js", "application/javascript"},
+            {".json", "application/json"},
             {".txt", "text/plain"},
             {".gif", "image/gif"},
-            {".png", "image/png"}
+            {".png", "image/png"},
+            {".css", "text/css"}
     };
 
     public HTTPMessage(DataInputStream in) throws IOException {
@@ -202,10 +203,7 @@ public class HTTPMessage implements Serializable {
         return uri;
     }
 
-    public JSONObject getContentInJSON() throws IllegalAccessException {
-        if(contentType != "application/json") {
-            throw new IllegalAccessException("Not a JSON object");
-        }
-        return new JSONObject(new String(content));
+    public String getString() {
+        return new String(content);
     }
 }
