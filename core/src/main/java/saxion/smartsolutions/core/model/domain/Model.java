@@ -13,8 +13,6 @@ import java.util.Set;
 @Entity
 public class Model implements DomainEntity<ModelNumber> {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -25,7 +23,7 @@ public class Model implements DomainEntity<ModelNumber> {
     @Column(nullable = false, unique = true)
     private Designation name;
 
-    @Column(nullable = false, unique = true)
+    @AttributeOverride(name = "model", column = @Column(name = "model_number", nullable = false, unique = true))
     private ModelNumber modelNumber;
 
     @ManyToOne

@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Entity
 public class Device implements DomainEntity<Designation> {
 
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,23 +16,23 @@ public class Device implements DomainEntity<Designation> {
     @Version
     private long version;
 
-    @Column(nullable = false)
-    private Designation name;
+    @AttributeOverride(name = "name", column = @Column(name = "generic_name", nullable = false, unique = true))
+    private Designation generic_name;
 
     public Device(Designation name) {
         if(name == null) {
             throw new IllegalArgumentException("Arguments cannot be null.");
         }
-        this.name = name;
+        this.generic_name = name;
     }
 
     public Device() {
-        this.name = null;
+        this.generic_name = null;
     }
 
     @Override
     public Designation identity() {
-        return name;
+        return generic_name;
     }
 
     @Override
@@ -42,6 +41,6 @@ public class Device implements DomainEntity<Designation> {
             return false;
         }
         Device type = (Device) other;
-        return type.name.equals(this.name);
+        return type.generic_name.equals(this.generic_name);
     }
 }

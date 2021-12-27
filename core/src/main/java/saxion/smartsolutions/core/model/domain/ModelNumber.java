@@ -36,6 +36,6 @@ public class ModelNumber implements Comparable<ModelNumber> {
 
     @Override
     public int compareTo(ModelNumber modelNumber) {
-        return model.compareTo(modelNumber.model);
+        return this.model.compareTo(modelNumber.model);
     }
 }

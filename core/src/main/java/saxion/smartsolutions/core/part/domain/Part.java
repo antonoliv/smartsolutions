@@ -11,9 +11,8 @@ import java.util.Set;
 
 
 @Entity
-public class Part implements DomainEntity<PartNumber>{
+public class Part implements DomainEntity<Long> {
 
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +24,7 @@ public class Part implements DomainEntity<PartNumber>{
     @Column(nullable = false)
     private Designation name;
 
-    @Column(nullable = false, unique = true)
+    @AttributeOverride(name = "partnum", column = @Column(name = "part_number", nullable = false))
     private PartNumber partNumber;
 
     @ManyToOne
@@ -53,8 +52,8 @@ public class Part implements DomainEntity<PartNumber>{
     }
 
     @Override
-    public PartNumber identity() {
-        return partNumber;
+    public Long identity() {
+        return id;
     }
 
     @Override
@@ -63,7 +62,14 @@ public class Part implements DomainEntity<PartNumber>{
     }
 
     public boolean addCompatibleModel(Model model) {
+        if(this.model.equals(model)) {
+            return false;
+        }
         return this.compatibleModels.add(model);
+    }
+
+    public String toString() {
+        return String.valueOf(id);
     }
 
 }

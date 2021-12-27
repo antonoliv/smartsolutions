@@ -9,7 +9,7 @@ import java.util.Optional;
 public class JpaDeviceRepository extends JpaRepository<Device, Long, Designation> implements DeviceRepository {
 
     public JpaDeviceRepository() {
-        super("name");
+        super("generic_name");
     }
 
     @Override

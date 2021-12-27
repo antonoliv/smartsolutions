@@ -13,17 +13,20 @@
         <fieldset>
         <legend>Add a new Part</legend>
         <ul>
-            <li><label for="name">Generic Name:</label>
+            <li><label for="name">Generic Name*:</label>
                 <input type="text" name="name" id="name"></li>
-            <li><label for="partNumber">Part Number:</label>
+            <li><label for="partNumber">Part Number*:</label>
                 <input type="text" name="partNumber" id="partNumber"></li>
-            <li><label for="modelNumber">Model Number:</label>
+            <li><label for="modelNumber">Model Number*:</label>
                 <input type="text" name="modeNumber" id="modelNumber"></li>
+            <li><label for="compatible">Compatible Models:</label>
+                <input type="text" name="compatible" id="compatible"></li>
         </ul>
-            <input type="submit" value="Submit" onclick="registerPart()">
             <div id="result">
 
-            </div>
+        </div>
+            <input type="submit" value="Submit" onclick="registerPart()">
+
         </fieldset>
 </main>
 <nav role="navigation">

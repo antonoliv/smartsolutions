@@ -11,6 +11,8 @@ import saxion.smartsolutions.core.part.domain.PartNumber;
 import saxion.smartsolutions.core.part.repo.PartRepository;
 import saxion.smartsolutions.core.value.Designation;
 
+import java.util.NoSuchElementException;
+
 
 public class RegisterPartController {
 
@@ -24,17 +26,16 @@ public class RegisterPartController {
 
     public Part registerPart(Designation name, PartNumber partnum, Designation brand, ModelNumber model) {
         Brand b;
+        Model m;
         try {
             b = brp.findByName(brand).get();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Brand not registered in the system.");
+        } catch(NoSuchElementException e) {
+            throw new IllegalArgumentException("Brand does not exist.");
         }
-        Model m;
-        System.out.println(model.model);
         try {
             m = mrp.findByModelNumber(model).get();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Model not registered in the system.");
+        } catch(NoSuchElementException e) {
+            throw new IllegalArgumentException("Model does not exist.");
         }
         return repo.save(new Part(name, partnum, b, m));
     }

@@ -9,7 +9,7 @@ import java.util.Optional;
 public class JpaBrandRepository extends JpaRepository<Brand, Long, Designation> implements BrandRepository {
 
     public JpaBrandRepository() {
-        super("name");
+        super("generic_name");
     }
 
     @Override

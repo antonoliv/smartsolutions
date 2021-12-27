@@ -8,8 +8,6 @@ import javax.persistence.*;
 @Entity
 public class Brand implements DomainEntity<Designation> {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -17,20 +15,20 @@ public class Brand implements DomainEntity<Designation> {
     @Version
     private long version;
 
-    @Column(nullable = false, unique = true)
-    private Designation name;
+    @AttributeOverride(name = "name", column = @Column(name = "generic_name", nullable = false, unique = true))
+    private Designation generic_name;
 
     public Brand(Designation name) {
-        this.name = name;
+        this.generic_name = name;
     }
 
     public Brand() {
-        this.name = null;
+        this.generic_name = null;
     }
 
     @Override
     public Designation identity() {
-        return name;
+        return generic_name;
     }
 
     @Override
@@ -39,6 +37,6 @@ public class Brand implements DomainEntity<Designation> {
             return false;
         }
         Brand oth = (Brand) other;
-        return name.equals(oth.name);
+        return generic_name.equals(oth.generic_name);
     }
 }

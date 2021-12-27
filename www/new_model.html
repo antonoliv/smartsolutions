@@ -10,18 +10,22 @@
 <h1>Register New Model</h1>
 </header>
 <main>
-    <form onsubmit="registerModel()">
         <fieldset>
         <legend>Add a new Model</legend>
         <ul>
-            <li><label for="name">Generic Name:</label>
+            <li><label for="name">Generic Name*:</label>
                 <input type="text" name="name" id="name"></li>
-            <li><label for="partNumber">Model Number:</label>
-                <input type="text" name="partNumber" id="partNumber"></li>
+            <li><label for="modelNumber">Model Number*:</label>
+                <input type="text" name="modelNumber" id="modelNumber"></li>
+            <li><label for="manual">Manuals:</label>
+                <input type="file" name="manual" id="manual"></li>
         </ul>
-            <input type="submit" value="Submit">
+            <div id="result">
+
+            </div>
+            <input type="submit" value="Submit" onclick="registerModel()">
+
         </fieldset>
-    </form>
 </main>
 <nav role="navigation">
     <ul>

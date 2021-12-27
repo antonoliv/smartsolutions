@@ -2,39 +2,16 @@
 
 hide methods
 
-
-
-object Product {
-    -String code
-    -double price
-    -String stockLocation
-    -String description
-}
-
-object PropertyValue {
-    -String value
-}
-
-object Device {
-    -String serialNum
-    -String entryDate
-    -File image
-}
-
-object State {
-    -String designation
-}
-
-object Condition {
-    -String designation
-}
-
 object Appliance {
     -String name
 }
 
 object Property {
     -String name
+}
+
+object PropertyValue {
+    -String value
 }
 
 object Model {
@@ -49,52 +26,24 @@ object Brand {
 object Part {
      -String name
      -String partNum
-     -int num
 }
 
-object Repair {
-    -Date date
-    -String observation
+object StockItem {
+    -String code
+    -String location
+    -Integer stock
 }
 
-object Test {
-    -Date date
-    -boolean ok
-    -String observation
-}
+Part "*" --> "1" Model: collected from >
+Part "*" --> "*" Model: compatible with >
+Part "1" --> "1" StockItem: is one >
+Part "1" --> "1" Brand: is made by >
 
-object Diagnosis {
-    -Date date
-    -boolean unrepairable
-}
+Model "1" --> "1" Brand: is made by >
+Model "1" --> "1" Appliance: is a >
 
-Product "1" --> "*" Model: represents
-Product "1" --> "*" Part: represents
-
-Device "1" -r-> "1" State: has a
-Device "1" ---> "1" Model: is part of a
-Device "1" --> "1" Condition: has a
-
-Part "*" -r-> "*" Model: belongs to
-Part "1" ---> "*" Property: has
-Part "1" ---> "*" PropertyValue: has
-Part "1" --> "1" Brand: is made by a
-
-Model "1" --> "*" PropertyValue: has
-Model "1" --> "1" Brand: is made by
-Model "1" --> "1" Appliance: is a
-
-Appliance "1" ---> "*" Property: has
-
-PropertyValue "1" --> "1" Property: corresponds to
-
-Repair "1" --> "1" Device
-Repair "1" --> "*" Part
-
-Test "1" --> "1" Device
-
-Diagnosis "1" -r-> "1" Device
-Diagnosis "1" --> "*" Part
-
+Appliance "1" --> "*" Property: has >
+Property "1" --> "1" PropertyValue: corresponds to >
+Part "1" --> "*" PropertyValue: has >
 
 @enduml

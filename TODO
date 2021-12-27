@@ -6,11 +6,10 @@
 - Add manuals to Model x
 - Persistence implementation x
 - api x
+- Add compatible models to part x
 
-- Add compatible models to part
+- fix Upload Manual
 - Change stuff
 - Search Stuff
-- Decide on Device type
 - interface
-- bootstrap
 - JSON Schema

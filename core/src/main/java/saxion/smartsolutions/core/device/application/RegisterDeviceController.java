@@ -1,5 +1,6 @@
 package saxion.smartsolutions.core.device.application;
 
+import org.hibernate.exception.ConstraintViolationException;
 import saxion.smartsolutions.core.PersistenceContext;
 import saxion.smartsolutions.core.device.domain.Device;
 import saxion.smartsolutions.core.device.repo.DeviceRepository;
@@ -15,6 +16,10 @@ public class RegisterDeviceController {
     }
 
     public Device registerDevice(Designation name) {
-        return repo.save(new Device(name));
+        try {
+            return repo.save(new Device(name));
+        } catch(ConstraintViolationException e) {
+            throw new IllegalArgumentException("Device already registered.");
+        }
     }
 }

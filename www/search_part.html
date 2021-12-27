@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Component</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<header>
+    <h1>Search</h1>
+</header>
+<div id="search">
+    <fieldset>
+        <legend>Search a Component</legend>
+        <ul>
+            <li><label for="name">Name:</label>
+                <input type="text" name="name" id="name"></li>
+            <li><label for="modelNumber">Model Number:</label>
+                <input type="text" name="modelNumber" id="modelNumber"></li>
+            <li><label for="partNumber">Part Number:</label>
+                <input type="text" name="partNumber" id="partNumber"></li>
+        </ul>
+<label for="sortlist">Sort:</label><select id="sortlist" >
+    <option>Name</option>
+    <option>Model</option>
+    </select>
+        <div id="result">
+
+        </div>
+        <input type="submit" value="Submit" onclick="searchPart()">
+    </fieldset>
+</div>
+<nav role="navigation">
+    <ul>
+        <li><a href="index.html">Main Menu</a></li>
+    </ul>
+</nav>
+<footer>
+    Smart Solutions Semester
+</footer>
+<script src="search_part.js"></script>
+</body>
+</html>

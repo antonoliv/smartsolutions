@@ -1,19 +1,28 @@
-function registerPart() {
-    var partNumber = document.getElementById("partNumber").value;
-    var name = document.getElementById("name").value;
+function registerModel() {
     var model = document.getElementById("modelNumber").value;
+    var name = document.getElementById("name").value;
+    var manual = document.getElementById("manual").value;
     var ret = document.getElementById("result");
-    if(Object.keys(partNumber).length === 0 || Object.keys(name).length === 0 || Object.keys(model).length === 0) {
+    if(Object.keys(model).length === 0 || Object.keys(name).length === 0) {
         ret.innerHTML = "Fields marked with * are mandatory.";
         ret.style.color = "red";
         return;
     }
+    if(Object.keys(manual).length === 0) {
+        var obj = { "modelNumber" : model,
+            "name" : name,
+            "device" : "TV",
+            "brand" : "Samsung"
+        }
+    } else {
+        var obj = { "modelNumber" : model,
+            "name" : name,
+            "device" : "TV",
+            "brand" : "Samsung",
+            "manual" : manual
+        }
+    }
 
-    var obj = { "partNumber" : partNumber,
-        "name" : name,
-        "brand" : "Samsung",
-        "modelNumber" :  model,
-        };
 
     var request = new XMLHttpRequest();
 
@@ -42,8 +51,14 @@ function registerPart() {
         ret.innerHTML = "Server not available";
         ret.style.color="red";
     };
+
     //fetch("parts", {method: "POST", headers: {'Content-Type' : 'application/json'}, body: JSON.stringify(obj)});
-    request.open("POST", "/parts", true);
+    request.open("POST", "/models", true);
+
+    request.timeout = 15000;
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify(obj));
+
+
+
 }
