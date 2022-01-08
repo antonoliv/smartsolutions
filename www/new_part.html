@@ -5,7 +5,7 @@
     <title>Register New Part</title>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
-<body>
+<body onload="getModels()">
 <header>
 <h1>Register New Part</h1>
 </header>
@@ -18,11 +18,19 @@
             <li><label for="partNumber">Part Number*:</label>
                 <input type="text" name="partNumber" id="partNumber"></li>
             <li><label for="modelNumber">Model Number*:</label>
-                <input type="text" name="modeNumber" id="modelNumber"></li>
+                <select name="modelNumber" id="modelNumber"></select></li>
+            <li><label for="stock">Stock*:</label>
+                <input type="number" name="stock" id="stock" min="0"></li>
+            <li><label for="pictures">Pictures:</label>
+                <input type="file" name="pictures" id="pictures" multiple></li>
             <li><label for="compatible">Compatible Models:</label>
-                <input type="text" name="compatible" id="compatible"></li>
+                <select name="compatible" id="compatible" onclick="addCompatible()"></select></li>
         </ul>
-            <div id="result">
+            <p>Selected:</p>
+            <ul id="comps">
+
+            </ul>
+            <div id="state">
 
         </div>
             <input type="submit" value="Submit" onclick="registerPart()">

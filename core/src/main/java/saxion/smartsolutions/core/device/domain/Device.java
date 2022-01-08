@@ -1,14 +1,21 @@
 package saxion.smartsolutions.core.device.domain;
 
 import saxion.smartsolutions.core.concepts.DomainEntity;
+import saxion.smartsolutions.core.property.domain.Property;
 import saxion.smartsolutions.core.value.Designation;
 
 import javax.persistence.*;
+import java.util.Set;
 
+/**
+ * Represents a type of device in the application
+ */
 @Entity
 public class Device implements DomainEntity<Designation> {
 
-
+    /**
+     * Database generated id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -16,31 +23,49 @@ public class Device implements DomainEntity<Designation> {
     @Version
     private long version;
 
-    @AttributeOverride(name = "name", column = @Column(name = "generic_name", nullable = false, unique = true))
-    private Designation generic_name;
+    /**
+     * Device type's designation
+     */
+    @Column(nullable = false, unique = true)
+    private Designation name;
 
-    public Device(Designation name) {
-        if(name == null) {
+    /**
+     * Constructs a type with the given designation
+     * @param name designation of type
+     */
+    public Device(final Designation name) {
+        if (name == null) {
             throw new IllegalArgumentException("Arguments cannot be null.");
         }
-        this.generic_name = name;
+        this.name = name;
     }
 
+    // Empty Constructor
     public Device() {
-        this.generic_name = null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Designation identity() {
-        return generic_name;
+        return name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean sameAs(Object other) {
-        if(other == null || other.getClass() != this.getClass()) {
+        if (other == null || other.getClass() != this.getClass()) {
             return false;
         }
         Device type = (Device) other;
-        return type.generic_name.equals(this.generic_name);
+        return type.name.equals(this.name);
+    }
+
+
+    public Designation getName() {
+        return name;
     }
 }

@@ -2,40 +2,72 @@ package saxion.smartsolutions.core.model.domain;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Represents a model number in the application
+ */
 @Embeddable
 public class ModelNumber implements Comparable<ModelNumber> {
 
-    public final String model;
+    /**
+     * Model number in primitive type
+     */
+    private final String modelNumber;
 
-    private ModelNumber(String model) {
-        if(model == null || model.trim().isEmpty()) {
+    /**
+     * Constructs a model number with the given string
+     * @param modelNumber model number
+     */
+    private ModelNumber(String modelNumber) {
+        if (modelNumber == null || modelNumber.trim().isEmpty()) {
             throw new IllegalArgumentException("Model Number cannot be null or empty.");
         }
-        this.model = model;
+        this.modelNumber = modelNumber;
     }
 
+    // Empty Constructor
     protected ModelNumber() {
-        this.model = null;
+        modelNumber = null;
     }
 
+    /**
+     * Returns a model number with the given value
+     * @param modelNumber model number
+     * @return instance of ModelNumber
+     */
+    public static ModelNumber valueOf(String modelNumber) {
+        return new ModelNumber(modelNumber);
+    }
+
+    /**
+     * Returns a string representation of the model number
+     * @return string of model number
+     */
     public String toString() {
-        return model;
+        return modelNumber;
     }
 
-    public static ModelNumber valueOf(String model) {
-        return new ModelNumber(model);
-    }
-
+    /**
+     * Checks if model number is equal to another object
+     * @param other other object
+     * @return true if equal
+     */
     public boolean equals(Object other) {
         if (other == null || other.getClass() != this.getClass()) {
             return false;
         }
         ModelNumber model = (ModelNumber) other;
-        return this.model.equals(model.toString());
+        return this.modelNumber.equals(model.toString());
     }
 
+    /**
+     * Compares model number with another one
+     * @param modelNumber other model number
+     * @return 0 if equal<br>
+     * >0 if model number is greater than the other<br>
+     * <0 if model number is less than the other
+     */
     @Override
     public int compareTo(ModelNumber modelNumber) {
-        return this.model.compareTo(modelNumber.model);
+        return this.modelNumber.compareTo(modelNumber.modelNumber);
     }
 }

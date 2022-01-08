@@ -11,6 +11,7 @@
     <class>saxion.smartsolutions.core.brand.domain.Brand</class>
     <class>saxion.smartsolutions.core.model.domain.Model</class>
     <class>saxion.smartsolutions.core.part.domain.Part</class>
+    <class>saxion.smartsolutions.core.property.domain.Property</class>
 
     <properties>
       <!--
@@ -25,7 +26,7 @@
       <!-- <property name = "hibernate.show_sql" saxion.smartsolutions.core.value = "true" /> -->
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.show_sql" value="false" />
-            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
     </properties>
   </persistence-unit>
 </persistence>

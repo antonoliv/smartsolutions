@@ -5,11 +5,11 @@
     <title>Search Component</title>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
-<body>
+<body onload="getProperties()">
 <header>
     <h1>Search</h1>
 </header>
-<div id="search">
+<main>
     <fieldset>
         <legend>Search a Component</legend>
         <ul>
@@ -19,17 +19,25 @@
                 <input type="text" name="modelNumber" id="modelNumber"></li>
             <li><label for="partNumber">Part Number:</label>
                 <input type="text" name="partNumber" id="partNumber"></li>
+            <li><label for="property">Properties:</label>
+            <select name="Property" id="property" onclick="addProperty()"></select></li>
+        </ul>
+        <ul id="properties">
+
         </ul>
 <label for="sortlist">Sort:</label><select id="sortlist" >
     <option>Name</option>
     <option>Model</option>
     </select>
-        <div id="result">
+        <div id="state">
 
         </div>
         <input type="submit" value="Submit" onclick="searchPart()">
     </fieldset>
+<div id="search">
+
 </div>
+</main>
 <nav role="navigation">
     <ul>
         <li><a href="index.html">Main Menu</a></li>

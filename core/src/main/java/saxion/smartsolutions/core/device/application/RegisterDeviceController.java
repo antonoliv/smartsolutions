@@ -7,18 +7,26 @@ import saxion.smartsolutions.core.device.repo.DeviceRepository;
 import saxion.smartsolutions.core.value.Designation;
 
 
+/**
+ *
+ */
 public class RegisterDeviceController {
 
-    private DeviceRepository repo = PersistenceContext.repositories().deviceRepository();
+    private final DeviceRepository repo = PersistenceContext.repositories().deviceRepository();
 
     public RegisterDeviceController() {
 
     }
 
-    public Device registerDevice(Designation name) {
+    /**
+     * Registers a new type of device in the platform
+     * @param name designation of device
+     * @return type of device
+     */
+    public Device registerDevice(final Designation name) {
         try {
             return repo.save(new Device(name));
-        } catch(ConstraintViolationException e) {
+        } catch (ConstraintViolationException e) {
             throw new IllegalArgumentException("Device already registered.");
         }
     }

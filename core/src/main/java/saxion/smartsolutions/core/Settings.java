@@ -54,7 +54,7 @@ public class Settings {
         return this.applicationProperties.getProperty(REPOSITORY_FACTORY_KEY);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public Map getExtendedPersistenceProperties() {
         final Map ret = new HashMap();
         ret.put(SCHEMA_GENERATION_KEY,

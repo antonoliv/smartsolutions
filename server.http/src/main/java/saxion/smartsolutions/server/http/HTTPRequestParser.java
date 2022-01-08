@@ -7,7 +7,6 @@ package saxion.smartsolutions.server.http;
 
 public interface HTTPRequestParser {
 
-    String ERROR = "<html><body><h1>404 File not found</h1></body></html>";
     String BASE_FOLDER = "www";
 
     /**

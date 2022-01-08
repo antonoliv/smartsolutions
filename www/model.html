@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body onload="getModel()">
+<header>
+    <h1 id="title"></h1>
+</header>
+<main>
+    <fieldset>
+        <legend>Details</legend>
+        <ul>
+                    <li><label for="name">Generic Name:</label>
+                        <input type="text" name="name" id="name" readonly></li>
+                    <li><label for="modelNumber">Model Number:</label>
+                        <input type="text" name="modeNumber" id="modelNumber" readonly></li>
+                    <li><label for="brand">Brand:</label>
+                        <input type="text" name="brand" id="brand" readonly></li>
+                    <li><label for="type">Type of Device</label>
+                        <input type="text" name="type" id="type" readonly></li>
+        </ul>
+        <ul id="properties">
+
+        </ul>
+        <div id="state"></div>
+    </fieldset>
+</main>
+<nav role="navigation">
+    <ul>
+        <li><a href="index.html">Main Menu</a></li>
+    </ul>
+</nav>
+<footer>
+    Smart Solutions Semester
+</footer>
+<script src="model.js"></script>
+</body>
+</html>

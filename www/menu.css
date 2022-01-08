@@ -1,0 +1,103 @@
+
+* {
+    font-family: SansSerif, sans-serif;
+}
+  label {
+      display: inline-block;
+        width: 150px;
+      padding-bottom: 5px;
+      padding-top: 5px;
+        text-align: right;
+      }
+
+  ul,li {
+    text-align: center;
+  }
+  a:visited, a:link {
+      text-underline: none;
+      color: white;
+      background-color: darkolivegreen;
+      color: white;
+      padding: 14px 25px;
+      text-align: center;
+      font-size: 24px;
+      width: 60%;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-top: 5px;
+  }
+  a:hover, a:active {
+      background-color: grey;
+  }
+
+  select {
+      width: 120px;
+  }
+
+
+  footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding: 4px;
+      background-color: lightgreen;
+      color: black;
+      text-align: center;
+  }
+
+  header {
+      position: relative;
+      margin-bottom: 30px;
+      width: 100%;
+      padding: 4px;
+      background-color: darkgreen;
+      color: white;
+      text-align: center;
+  }
+
+  body{
+      margin: 0px;
+      padding: 0px;
+  }
+
+ul {
+  list-style-type: none;
+}
+
+  table {
+      table-layout: fixed;
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid black;
+  }
+
+  thead th:nth-child(1) {
+      width: 25%;
+  }
+
+  thead th:nth-child(2) {
+      width: 5%;
+  }
+
+  thead th:nth-child(3) {
+      width: 15%;
+  }
+
+  thead th:nth-child(4) {
+      width: 17%;
+  }
+
+  thead th:nth-child(5) {
+      width: 17%;
+  }
+
+  thead th:nth-child(6) {
+      width: 17%;
+  }
+
+  th, td {
+      border: 1px solid black;
+      padding: 20px;
+  }

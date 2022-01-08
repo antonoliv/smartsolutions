@@ -7,6 +7,8 @@ package saxion.smartsolutions.server.http;
 
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HTTPMessage implements Serializable {
 
@@ -18,12 +20,21 @@ public class HTTPMessage implements Serializable {
     private static final String CONTENT_TYPE = "Content-type:";
     private static final String CONTENT_LENGTH = "Content-length:";
     private static final String CONNECTION = "Connection:";
-
+    private static final String ACCEPT = "Accept:";
+    private static final String[][] knownFileExt = {
+            {".pdf", "application/pdf"},
+            {".js", "application/javascript"},
+            {".json", "application/json"},
+            {".txt", "text/plain"},
+            {".gif", "image/gif"},
+            {".png", "image/png"},
+            {".css", "text/css"}
+    };
     private boolean isRequest;
     private String method;
     private String uri;
     private String status;
-
+    private Map<String, Double> accept;
     private String contentType;
     private byte[] content;
 
@@ -35,16 +46,6 @@ public class HTTPMessage implements Serializable {
         status = null;
         contentType = null;
     }
-
-    private static final String[][] knownFileExt = {
-            {".pdf", "application/pdf"},
-            {".js", "application/javascript"},
-            {".json", "application/json"},
-            {".txt", "text/plain"},
-            {".gif", "image/gif"},
-            {".png", "image/png"},
-            {".css", "text/css"}
-    };
 
     public HTTPMessage(DataInputStream in) throws IOException {
         String firstLine = readHeaderLine(in);
@@ -64,9 +65,9 @@ public class HTTPMessage implements Serializable {
         }
 
         String headerLine;
-
         do {
             headerLine = readHeaderLine(in);
+
             if (headerLine.toUpperCase().startsWith(CONTENT_TYPE.toUpperCase())) {
                 contentType = headerLine.substring(CONTENT_TYPE.length()).trim();
             } else if (headerLine.toUpperCase().startsWith(CONTENT_LENGTH.toUpperCase())) {
@@ -78,6 +79,18 @@ public class HTTPMessage implements Serializable {
                     throw new IOException();
                 }
                 content = new byte[len];
+            } else if (headerLine.toUpperCase().startsWith(ACCEPT.toUpperCase())) {
+                accept = new HashMap<>();
+                String line = headerLine.substring(ACCEPT.length()).trim();
+                String[] types = line.split(",");
+                for (String type : types) {
+                    String[] tp = type.split(";");
+                    if (tp.length == 1 || !tp[1].startsWith("q=")) {
+                        accept.put(tp[0], 1.0);
+                    } else {
+                        accept.put(tp[0], Double.parseDouble(tp[1].split("=")[1]));
+                    }
+                }
             }
         } while (!headerLine.isEmpty());
 
@@ -205,5 +218,12 @@ public class HTTPMessage implements Serializable {
 
     public String getString() {
         return new String(content);
+    }
+
+    public boolean accepts(String type) {
+        if (accept.containsKey("*/*")) {
+            return true;
+        }
+        return accept.containsKey(type);
     }
 }

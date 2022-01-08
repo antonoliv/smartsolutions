@@ -6,15 +6,21 @@ import saxion.smartsolutions.core.brand.domain.Brand;
 import saxion.smartsolutions.core.brand.repo.BrandRepository;
 import saxion.smartsolutions.core.value.Designation;
 
-
+/**
+ * Controller for registering a new brand of products in the platform
+ */
 public class RegisterBrandController {
 
-    private BrandRepository repo = PersistenceContext.repositories().brandRepository();
+    private final BrandRepository repo = PersistenceContext.repositories().brandRepository();
 
     public RegisterBrandController() {
-
     }
 
+    /**
+     * Registers a brand in the application
+     * @param name name of the brand
+     * @return created brand
+     */
     public Brand registerBrand(final Designation name) {
         try {
             return repo.save(new Brand(name));

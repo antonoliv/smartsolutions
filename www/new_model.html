@@ -5,22 +5,28 @@
     <title>Register New Model</title>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
-<body>
+<body onload="getProperties()">
 <header>
 <h1>Register New Model</h1>
 </header>
 <main>
         <fieldset>
         <legend>Add a new Model</legend>
-        <ul>
+        <ul id="form">
             <li><label for="name">Generic Name*:</label>
                 <input type="text" name="name" id="name"></li>
             <li><label for="modelNumber">Model Number*:</label>
                 <input type="text" name="modelNumber" id="modelNumber"></li>
             <li><label for="manual">Manuals:</label>
                 <input type="file" name="manual" id="manual"></li>
+
+            <li><label for="property">Properties:</label>
+                <select name="Property" id="property" onclick="addProperty()"></select></li>
         </ul>
-            <div id="result">
+            <ul id="properties">
+
+            </ul>
+            <div id="state">
 
             </div>
             <input type="submit" value="Submit" onclick="registerModel()">

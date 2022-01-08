@@ -9,12 +9,12 @@ import saxion.smartsolutions.core.model.domain.ModelNumber;
 import saxion.smartsolutions.core.part.application.RegisterPartController;
 import saxion.smartsolutions.core.part.domain.Part;
 import saxion.smartsolutions.core.part.domain.PartNumber;
+import saxion.smartsolutions.core.part.domain.Stock;
+import saxion.smartsolutions.core.property.application.RegisterPropertyController;
 import saxion.smartsolutions.core.value.Designation;
 import saxion.smartsolutions.server.http.HTTPServer;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class App {
 
@@ -26,13 +26,17 @@ public class App {
             new RegisterModelController().registerModel(Designation.valueOf("test"), ModelNumber.valueOf("test"), Designation.valueOf("TV"), Designation.valueOf("Samsung"));
             new RegisterModelController().registerModel(Designation.valueOf("test"), ModelNumber.valueOf("test2"), Designation.valueOf("TV"), Designation.valueOf("Samsung"));
             RegisterPartController ctrl = new RegisterPartController();
-            ctrl.registerPart(Designation.valueOf("joao"), PartNumber.valueOf("joao1"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"));
-            ctrl.registerPart(Designation.valueOf("carlos"), PartNumber.valueOf("joao1"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"));
-            ctrl.registerPart(Designation.valueOf("tres"), PartNumber.valueOf("joao1"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"));
-            ctrl.registerPart(Designation.valueOf("joao"), PartNumber.valueOf("joao5"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"));
-            ctrl.registerPart(Designation.valueOf("joao"), PartNumber.valueOf("joao5"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"));
-            Part test = ctrl.registerPart(Designation.valueOf("joao"), PartNumber.valueOf("joao5"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test2"));
-            test.addCompatibleModel(PersistenceContext.repositories().modelRepository().findByModelNumber(ModelNumber.valueOf("test")).get());
+            RegisterPropertyController pctrl = new RegisterPropertyController();
+            pctrl.registerProperty(Designation.valueOf("Width"));
+            pctrl.registerProperty(Designation.valueOf("Height"));
+            pctrl.registerProperty(Designation.valueOf("Length"));
+            ctrl.registerPart(Designation.valueOf("joao"), PartNumber.valueOf("joao1"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"), Stock.valueOf(3));
+            ctrl.registerPart(Designation.valueOf("carlos"), PartNumber.valueOf("joao1"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"), Stock.valueOf(4));
+            ctrl.registerPart(Designation.valueOf("tres"), PartNumber.valueOf("joao1"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"), Stock.valueOf(2));
+            ctrl.registerPart(Designation.valueOf("joao"), PartNumber.valueOf("joao5"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"), Stock.valueOf(1));
+            ctrl.registerPart(Designation.valueOf("joao"), PartNumber.valueOf("joao5"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test"), Stock.valueOf(4));
+            Part test = ctrl.registerPart(Designation.valueOf("joao"), PartNumber.valueOf("joao5"), Designation.valueOf("Samsung"), ModelNumber.valueOf("test2"), Stock.valueOf(0));
+            test.addCompatibleModel(PersistenceContext.repositories().modelRepository().ofIdentity(ModelNumber.valueOf("test")).get());
             PersistenceContext.repositories().partRepository().save(test);
             server.start();
         } catch (ServiceException e) {

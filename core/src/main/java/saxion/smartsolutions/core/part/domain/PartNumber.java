@@ -20,7 +20,7 @@ public class PartNumber implements Comparable<PartNumber> {
     }
 
     public boolean equals(Object otherObject) {
-        if(otherObject == null || otherObject.getClass() != this.getClass()) {
+        if (otherObject == null || otherObject.getClass() != this.getClass()) {
             return false;
         }
         PartNumber other = (PartNumber) otherObject;
@@ -30,5 +30,10 @@ public class PartNumber implements Comparable<PartNumber> {
     @Override
     public int compareTo(PartNumber partNumber) {
         return this.partnum.compareTo(partNumber.partnum);
+    }
+
+    @Override
+    public String toString() {
+        return partnum;
     }
 }

@@ -7,24 +7,41 @@ import saxion.smartsolutions.core.model.repo.ModelRepository;
 import saxion.smartsolutions.core.part.domain.Part;
 import saxion.smartsolutions.core.part.domain.PartNumber;
 import saxion.smartsolutions.core.part.repo.PartRepository;
+import saxion.smartsolutions.core.property.domain.Property;
+import saxion.smartsolutions.core.property.repo.PropertyRepository;
 import saxion.smartsolutions.core.value.Designation;
 
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class SearchPartController {
 
-    private PartRepository repo = PersistenceContext.repositories().partRepository();
-    private ModelRepository modelRepo = PersistenceContext.repositories().modelRepository();
+    private final PartRepository repo = PersistenceContext.repositories().partRepository();
+    private final ModelRepository modelRepo = PersistenceContext.repositories().modelRepository();
+    private final PropertyRepository propRepo = PersistenceContext.repositories().propertyRepository();
 
-    public Iterable<Part> searchPart(Designation name, ModelNumber modelnumber, PartNumber partnumber) {
+    public Iterable<Part> searchPart(Designation name, ModelNumber modelnumber, PartNumber partnumber, Map<Designation, Designation> props) {
         Model m = null;
         try {
-            if(modelnumber != null) {
-                m = modelRepo.findByModelNumber(modelnumber).get();
+            if (modelnumber != null) {
+                m = modelRepo.ofIdentity(modelnumber).get();
             }
-        } catch(NoSuchElementException e) {
-            throw new IllegalArgumentException("Model does not exist.");
+        } catch (NoSuchElementException e) {
+            return new ArrayList<>();
         }
-        return repo.searchPart(name, m, partnumber);
+        Map<Property, Designation> map = new HashMap<>();
+        for(Designation key : props.keySet()) {
+            try{
+                Property p = propRepo.ofIdentity(key).get();
+                map.put(p, props.get(key));
+            } catch (NoSuchElementException e) {
+                return new ArrayList<>();
+            }
+        }
+        return repo.searchPart(name, m, partnumber, map);
+    }
+
+
+    public Optional<Part> findByID(long id) {
+        return repo.ofIdentity(id);
     }
 }

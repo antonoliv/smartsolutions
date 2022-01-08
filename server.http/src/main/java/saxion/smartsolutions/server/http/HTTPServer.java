@@ -7,17 +7,15 @@ package saxion.smartsolutions.server.http;
 
 
 import javax.net.ServerSocketFactory;
-import javax.net.ssl.SSLServerSocketFactory;
-import javax.net.ssl.SSLSocket;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class HTTPServer extends Thread {
 
-    private ServerSocket server;
-    private final HTTPRequestParser parser;
     private static final String CERT = "ssl/server.jks";
+    private final HTTPRequestParser parser;
+    private final ServerSocket server;
 
     public HTTPServer(HTTPRequestParser parser) throws IOException {
         //System.setProperty("javax.net.ssl.keyStore", CERT);

@@ -5,9 +5,10 @@ import saxion.smartsolutions.core.RepositoryFactory;
 import saxion.smartsolutions.core.TransactionalContext;
 import saxion.smartsolutions.core.brand.repo.BrandRepository;
 import saxion.smartsolutions.core.device.repo.DeviceRepository;
-import saxion.smartsolutions.persistence.impl.jpa.framework.JpaTransactionalContext;
 import saxion.smartsolutions.core.model.repo.ModelRepository;
 import saxion.smartsolutions.core.part.repo.PartRepository;
+import saxion.smartsolutions.core.property.repo.PropertyRepository;
+import saxion.smartsolutions.persistence.impl.jpa.framework.JpaTransactionalContext;
 
 public class JpaRepositoryFactory implements RepositoryFactory {
 
@@ -37,4 +38,7 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     public PartRepository partRepository() {
         return new JpaPartRepository();
     }
+
+    @Override
+    public PropertyRepository propertyRepository() { return new JpaPropertyRepository(); }
 }

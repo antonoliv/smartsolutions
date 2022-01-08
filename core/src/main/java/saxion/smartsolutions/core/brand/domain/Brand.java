@@ -5,9 +5,15 @@ import saxion.smartsolutions.core.value.Designation;
 
 import javax.persistence.*;
 
+/**
+ * Represents a brand of products in the platform
+ */
 @Entity
 public class Brand implements DomainEntity<Designation> {
 
+    /**
+     * Database Generated id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -15,28 +21,48 @@ public class Brand implements DomainEntity<Designation> {
     @Version
     private long version;
 
-    @AttributeOverride(name = "name", column = @Column(name = "generic_name", nullable = false, unique = true))
-    private Designation generic_name;
+    /**
+     * Name of the Brand
+     */
+    @Column(nullable = false, unique = true)
+    private Designation name;
 
+    /**
+     * Creates and instance of Brand with the given name
+     * @param name name of the brand
+     */
     public Brand(Designation name) {
-        this.generic_name = name;
+        this.name = name;
     }
 
+    // Empty Constructor
     public Brand() {
-        this.generic_name = null;
     }
 
+    /**
+     * Returns the identity of a Brand, which is its name
+     * @return identity of brand
+     */
     @Override
     public Designation identity() {
-        return generic_name;
+        return name;
     }
 
+    /**
+     * Checks if a brand has the same identity has another
+     * @param other brand
+     * @return true if brands have the same identity
+     */
     @Override
-    public boolean sameAs(Object other) {
-        if(other == null || other.getClass() != this.getClass()) {
+    public boolean sameAs(final Object other) {
+        if (other == null || other.getClass() != this.getClass()) {
             return false;
         }
-        Brand oth = (Brand) other;
-        return generic_name.equals(oth.generic_name);
+        final Brand oth = (Brand) other;
+        return name.equals(oth.name);
+    }
+
+    public Designation getName() {
+        return name;
     }
 }
