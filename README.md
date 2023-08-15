@@ -2,6 +2,11 @@
 
 An proof of concept application designed to demonstrate an example of a dedicated platform to register electronic components. Solely done by the author and motivated by a research project for the _Smart Solutions_ course at the _Saxion University of Applied Sciences_ that the author took during his ERASMUS mobility to _Enschede, Netherlands_.
 
+<p align="center" >
+  <img width="500" src="https://www.dsif.nl/wp-content/uploads/2021/02/1200px-Saxion_University_of_Applied_Sciences_logo.svg-1-768x301.png" />
+</p>
+
+
 The main goal was to promote and assist in electronic component collection and reuse by creating a platform to register consumer electronics' parts and more easily find them in the case their needed by a repair job. This makes the job of storing and the repurpouse of old parts easier and, furthermore, supports the concept of a **circular economy**.
 
 During research and development several local companies, electronics stores and repair shops were consulted, through several meetings, to gather important requirements first-hand from organizations that might benefit from the system. Most of them didn't have a dedicated electronic components stock system and the ones who did had one that didn't take full advantage of the component's information.
@@ -13,6 +18,10 @@ During research and development several local companies, electronics stores and 
 * **Register Part** - Register a device part
 * **Search Parts** - Search a part by input text and filtering by name, brand, model number, part number or specific properties
 * **Check or Update Part/Model Information** - Check or Update a part's or model's details
+
+## Domain Model
+
+![Domain Model](doc/domain_model.png)
 
 ## Source Code Structure
 
